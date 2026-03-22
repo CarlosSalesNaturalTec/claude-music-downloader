@@ -81,11 +81,8 @@ YOUTUBE_API_KEY=sua_chave_youtube
 copy commands\baixar-musica.md %USERPROFILE%\.claude\commands\
 copy commands\baixar-playlist.md %USERPROFILE%\.claude\commands\
 
-# Skills
+# Skills (inclui scripts dentro de cada skill)
 xcopy /E /I skills %USERPROFILE%\.claude\skills
-
-# Scripts
-copy scripts\*.py %USERPROFILE%\.claude\scripts\
 ```
 
 **Linux/Mac:**
@@ -93,11 +90,8 @@ copy scripts\*.py %USERPROFILE%\.claude\scripts\
 # Slash commands
 cp commands/* ~/.claude/commands/
 
-# Skills
+# Skills (inclui scripts dentro de cada skill)
 cp -r skills/* ~/.claude/skills/
-
-# Scripts
-cp scripts/*.py ~/.claude/scripts/
 ```
 
 ---
@@ -150,22 +144,25 @@ claude-music-downloader/
 ├── README.md
 ├── requirements.txt
 ├── .env.example
+├── .gitignore
 │
 ├── commands/                        ← slash commands do Claude Code
 │   ├── baixar-musica.md             ← workflow música única
 │   └── baixar-playlist.md           ← workflow playlist com agentes paralelos
 │
-├── skills/                          ← skills do Claude Code
-│   ├── youtube-search/
-│   │   └── SKILL.md                 ← busca e avaliação de resultados
-│   ├── music-download/
-│   │   └── SKILL.md                 ← download via yt-dlp
-│   └── gdrive-upload/
-│       └── SKILL.md                 ← upload via MCP Google Drive
-│
-└── scripts/                         ← scripts Python executados pelas skills
-    ├── youtube_search.py            ← integração YouTube Data API v3
-    └── music_download.py            ← download e conversão MP3 via yt-dlp
+└── skills/                          ← skills do Claude Code (scripts dentro de cada skill)
+    ├── youtube-search/
+    │   ├── SKILL.md                 ← busca e avaliação de resultados
+    │   └── scripts/
+    │       └── youtube_search.py   ← integração YouTube Data API v3
+    ├── music-download/
+    │   ├── SKILL.md                 ← download via yt-dlp
+    │   ├── scripts/
+    │   │   └── music_download.py   ← download e conversão MP3
+    │   └── references/
+    │       └── yt-dlp-2026.3.17.md ← documentação de flags (criar separado)
+    └── gdrive-upload/
+        └── SKILL.md                 ← upload via MCP Google Drive
 ```
 
 ---
@@ -176,7 +173,7 @@ Antes de usar o workflow completo, valide cada script individualmente:
 
 ### Testar busca no YouTube
 ```bash
-python scripts/youtube_search.py "Aquarela Toquinho"
+python skills/youtube-search/scripts/youtube_search.py "Aquarela Toquinho"
 ```
 
 Saída esperada:
@@ -199,7 +196,7 @@ Saída esperada:
 
 ### Testar download MP3
 ```bash
-python scripts/music_download.py "VIDEO_ID" "aquarela_toquinho"
+python skills/music-download/scripts/music_download.py "VIDEO_ID" "aquarela_toquinho"
 ```
 
 Saída esperada:
@@ -274,4 +271,4 @@ pip install -U yt-dlp
 
 ## Licença
 
-Apache License 2.0
+MIT
