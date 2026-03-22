@@ -1,5 +1,6 @@
 # Variáveis de ambiente — NUNCA commitar
 .env
+.claude
 
 # Downloads temporários
 tmp/
