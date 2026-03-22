@@ -68,18 +68,13 @@ Siga estas etapas em ordem:
 3. Execute o download:
    python ~/.claude/scripts/music_download.py "{video_id}" "{titulo}"
 
-4. Faça upload para o Google Drive consultando a skill gdrive-upload:
-   - Verifique/crie a pasta Músicas/
-   - Faça upload do MP3
-   - Se já existir arquivo com mesmo nome: substitua automaticamente
-
-5. Retorne APENAS este JSON ao orquestrador (sem texto adicional):
+4. Retorne APENAS este JSON ao orquestrador (sem texto adicional):
 {
   "id": {id},
   "query": "{query}",
   "status": "success" | "error",
   "titulo": "título encontrado",
-  "link": "link do Google Drive",
+  "arquivo": "caminho absoluto do arquivo .mp3",
   "erro": "descrição do erro se houver"
 }
 ```
@@ -108,10 +103,10 @@ Quando todos os agentes concluírem, exiba o relatório consolidado:
 🎵 Download de playlist concluído!
 ─────────────────────────────────────────────
 ✅ Aquarela — Toquinho
-   📁 https://drive.google.com/file/d/xxx
+   📂 /tmp/musicas/aquarela_toquinho.mp3
 
 ✅ Hotel California — Eagles
-   📁 https://drive.google.com/file/d/yyy
+   📂 /tmp/musicas/hotel_california.mp3
 
 ❌ Clube da Esquina — Milton Nascimento
    ⚠️  Erro: Vídeo indisponível na sua região

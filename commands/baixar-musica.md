@@ -46,22 +46,7 @@ python ~/.claude/skills/music-download/scripts/music_download.py "{video_id}" "{
 
 ---
 
-## Etapa 3 — Upload para o Google Drive
-
-Consulte a skill `gdrive-upload` para orientação, depois use o MCP do Google Drive para:
-
-1. Verificar se a pasta `Músicas/` existe no Drive; se não existir, criá-la
-2. Fazer upload do arquivo MP3 para essa pasta
-3. Obter o link compartilhável do arquivo
-
-**Decisão:**
-- Se upload concluído → prossiga para o relatório final
-- Se erro de autenticação MCP → oriente o usuário a reconectar o Google Drive nas configurações
-- Se erro de espaço → informe o usuário
-
----
-
-## Etapa 4 — Relatório Final
+## Etapa 3 — Relatório Final
 
 Ao concluir com sucesso, responda neste formato:
 
@@ -71,7 +56,7 @@ Ao concluir com sucesso, responda neste formato:
 🎵 Música : {titulo completo}
 👤 Canal   : {canal do YouTube}
 ⏱️  Duração : {duracao}
-📁 Drive   : {link do arquivo no Google Drive}
+📂 Arquivo : {caminho absoluto do arquivo .mp3}
 ```
 
 Se qualquer etapa falhou, informe claramente qual etapa, o erro encontrado e o que o usuário pode fazer para resolver.

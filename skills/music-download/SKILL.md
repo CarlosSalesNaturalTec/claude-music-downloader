@@ -73,7 +73,7 @@ Use sempre estas flags do yt-dlp para garantir melhor qualidade de áudio:
 
 ## Pasta de destino
 
-Sempre salve em pasta temporária antes do upload:
+Sempre salve em pasta temporária:
 
 ```
 Windows : C:\Users\SeuUsuario\AppData\Local\Temp\musicas\
@@ -146,20 +146,5 @@ pip install yt-dlp==2026.3.17 python-dotenv --break-system-packages
 ```
 
 ---
-
-## Referência de flags do yt-dlp
-
-A documentação completa das flags e opções da versão `2026.3.17` está em:
-
-`references/yt-dlp-2026.3.17.md`
-
-**Consulte este arquivo quando precisar:**
-- Verificar sintaxe exata de uma flag antes de usar
-- Confirmar se uma opção ainda existe nesta versão
-- Escolher o postprocessor correto para o formato desejado
-- Resolver erros relacionados a flags desconhecidas ou depreciadas
-
-**Não consulte para operações rotineiras** — as flags do fluxo padrão
-já estão documentadas na seção *Configurações de qualidade* acima.
 
 Consulte `scripts/music_download.py` para o script completo de execução.

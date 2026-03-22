@@ -1,7 +1,7 @@
 # 🎵 claude-music-downloader
 
 Workflow de download de músicas via WhatsApp integrado ao Claude Code.
-O usuário envia o nome de uma música, o sistema busca no YouTube, faz o download em MP3 e disponibiliza o arquivo no Google Drive.
+O usuário envia o nome de uma música, o sistema busca no YouTube e faz o download em MP3.
 
 ---
 
@@ -15,10 +15,9 @@ Gateway WhatsApp (Baileys)
 Claude Code CLI
       ↓ executa /baixar-musica
       ├── youtube_search.py   → busca no YouTube
-      ├── music_download.py   → download via yt-dlp
-      └── Google Drive MCP    → upload do MP3
+      └── music_download.py   → download via yt-dlp
             ↓
-      Link do Google Drive → Usuário WhatsApp
+      Arquivo MP3 em /tmp/musicas/ → Usuário WhatsApp
 ```
 
 ---
@@ -111,11 +110,6 @@ cp -r skills/* ~/.claude/skills/
 5. Vá em **Credenciais → Criar credencial → Chave de API**
 6. Copie e cole no `.env`
 
-### Google Drive MCP
-1. No Claude Code, acesse **Configurações → Integrações**
-2. Conecte o Google Drive
-3. Autorize o acesso quando solicitado
-
 ---
 
 ## Uso
@@ -156,13 +150,10 @@ claude-music-downloader/
     │   └── scripts/
     │       └── youtube_search.py   ← integração YouTube Data API v3
     ├── music-download/
-    │   ├── SKILL.md                 ← download via yt-dlp
-    │   ├── scripts/
-    │   │   └── music_download.py   ← download e conversão MP3
-    │   └── references/
-    │       └── yt-dlp-2026.3.17.md ← documentação de flags (criar separado)
-    └── gdrive-upload/
-        └── SKILL.md                 ← upload via MCP Google Drive
+        ├── SKILL.md                 ← download via yt-dlp
+        └── scripts/
+            └── music_download.py   ← download e conversão MP3
+    
 ```
 
 ---
@@ -245,9 +236,6 @@ winget install ffmpeg
 sudo apt-get install -y ffmpeg
 ```
 
-### `MCP Google Drive não conectado`
-Reconecte o Google Drive em **Configurações → Integrações** no Claude Code.
-
 ### Vídeo indisponível ou geo-bloqueado
 O workflow tentará automaticamente o próximo resultado da busca.
 Se todos falharem, tente reformular o pedido com mais detalhes.
@@ -263,7 +251,7 @@ pip install -U yt-dlp
 
 - [ ] Integração completa com Baileys (WhatsApp)
 - [ ] Suporte a download de playlists do YouTube
-- [ ] Organização por artista no Google Drive
+- [ ] Upload opcional para bucket no GCP
 - [ ] Notificação de progresso em tempo real no WhatsApp
 - [ ] Suporte a outros formatos além de MP3 (FLAC, WAV)
 

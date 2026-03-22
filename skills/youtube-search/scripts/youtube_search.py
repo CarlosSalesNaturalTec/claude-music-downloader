@@ -5,16 +5,24 @@ Busca músicas no YouTube via Data API v3 e retorna JSON ranqueado.
 Uso: python youtube_search.py "Aquarela Toquinho"
 """
 
+import os
+from dotenv import load_dotenv, find_dotenv
 import sys
 import json
-import os
 import re
+from pathlib import Path
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-# ── Configuração ─────────────────────────────────────────────────────────────
+# Tenta carregar .env: primeiro ao lado do script, depois sobe a árvore de diretórios
+_script_dir = Path(__file__).resolve().parent
+_dotenv_path = _script_dir / ".env"
+if not _dotenv_path.exists():
+    _dotenv_path = find_dotenv(usecwd=True) or None
+load_dotenv(dotenv_path=_dotenv_path)
 
-API_KEY = os.environ.get("YOUTUBE_API_KEY")
+# ── Configuração ─────────────────────────────────────────────────────────────
+API_KEY = os.getenv("YOUTUBE_API_KEY")
 MAX_RESULTS = 5
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
